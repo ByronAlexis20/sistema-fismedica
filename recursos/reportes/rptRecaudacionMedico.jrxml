@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptRecaudacionMedico" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eeb97d25-3f5b-4b42-ba5e-566f2d651d3c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="conexion fismedica"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="413"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="576"/>
+	<parameter name="EMPRESA" class="java.lang.String"/>
+	<parameter name="DIRECCION" class="java.lang.String"/>
+	<parameter name="TELEFONO" class="java.lang.String"/>
+	<parameter name="ID_MEDICO" class="java.lang.Integer"/>
+	<parameter name="FECHA_INICIO" class="java.util.Date"/>
+	<parameter name="FECHA_FIN" class="java.util.Date"/>
+	<parameter name="NOMBRE" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select f.num_factura, f.fecha_emision,f.total
+from factura_cabecera f, cita_cabecera c 
+where f.id_cita = c.id_cita and f.estado = 'A'
+and c.id_medico =  $P{ID_MEDICO} 
+and f.fecha_emision between  $P{FECHA_INICIO} and  $P{FECHA_FIN}]]>
+	</queryString>
+	<field name="num_factura" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="num_factura"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="factura_cabecera"/>
+	</field>
+	<field name="fecha_emision" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="fecha_emision"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="factura_cabecera"/>
+	</field>
+	<field name="total" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.label" value="total"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="factura_cabecera"/>
+	</field>
+	<variable name="suma" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="104" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="1" y="10" width="79" height="70" uuid="3e2fa5c6-1794-4d8a-8e94-38b7b0e346cb"/>
+				<imageExpression><![CDATA["logo.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="87" y="19" width="463" height="20" uuid="ec78c4fb-c3f8-438b-a2f8-ff0c7c493333"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{EMPRESA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="87" y="39" width="463" height="20" uuid="cdb6e923-1734-4268-802c-d881b2f636c2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DIRECCION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="87" y="59" width="463" height="20" uuid="fbfd6ef3-401a-41dd-a957-c156b9e60dfe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TELEFONO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMM d, yyyy h:mm:ss a">
+				<reportElement x="332" y="-2" width="210" height="22" uuid="88c91228-16f8-400a-b70c-3956f392d2be"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="86" y="80" width="463" height="18" uuid="1ac18f1d-8387-4662-b45d-1878aa6817ec"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[La Libertad - Ecuador]]></text>
+			</staticText>
+			<line>
+				<reportElement x="3" y="98" width="549" height="1" uuid="6ff437eb-0d65-4db7-bf82-3ead7fec70bc"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="138" splitType="Stretch">
+			<staticText>
+				<reportElement x="50" y="110" width="139" height="20" uuid="5d2b1d21-1435-4b22-b6f8-689815b877f7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7e7e46c4-4e63-43fb-ab21-137e38a9be67"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número de factura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="110" width="140" height="20" uuid="016dd74a-93ba-4279-8ff5-007498fa00b4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="48695935-a9e8-4e1b-84ae-b628ec04b35c"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de emisión]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="109" width="100" height="21" uuid="93c55b80-af31-4f04-8684-ff09b4365d55">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8c4c7f59-3a48-4eda-bb17-db8118d729bd"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="60" width="250" height="20" uuid="4ba700fa-5620-4903-b8d7-83d65b3a7068"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NOMBRE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="60" width="70" height="20" uuid="98bf7fa9-a77b-4a2e-8689-a7d0cf242463"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Medico: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="35" width="79" height="25" uuid="70f884c6-26ab-433e-9150-c5447948a7a7"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESDE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="4" width="378" height="25" uuid="5e9c0b14-fb8e-4ae6-a11c-b0a1aa8d2222"/>
+				<textElement textAlignment="Center">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECAUDACIONES POR MEDICO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="230" y="56" width="102" height="1" uuid="2263c14f-0ab7-486c-9b80-2f7bac775bef"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="73" y="80" width="235" height="1" uuid="9ad01c7e-3868-48c9-80d0-23362ae3eaaa"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="2" y="132" width="518" height="1" uuid="31b1e09f-83ef-4364-b39b-41631d02f8e0"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="171" y="35" width="79" height="25" uuid="340d8bf1-f9e2-4da9-bf8c-d63b2bb186f9"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HASTA:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="70" y="56" width="101" height="1" uuid="3c1fcfff-7edc-4aec-b8ae-380661033684"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="60" y="35" width="100" height="21" uuid="d75b10b1-8f1b-4a13-9eb8-c99d4acbb2db"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FECHA_INICIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="229" y="35" width="100" height="24" uuid="f0d11b9c-59d3-4766-b977-d3c90621e06e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FECHA_FIN}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="56" y="1" width="120" height="20" uuid="a036c34b-4be5-4c63-980f-c7e1cc1b06dd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7e7e46c4-4e63-43fb-ab21-137e38a9be67"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{num_factura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="100" height="20" uuid="c93919dd-425b-4aee-b509-0e31750226d9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8c4c7f59-3a48-4eda-bb17-db8118d729bd"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="1" width="140" height="20" uuid="30c909cf-4662-4c72-86d8-175953025e35">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="48695935-a9e8-4e1b-84ae-b628ec04b35c"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_emision}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="21" width="518" height="1" uuid="a3316540-840d-471f-99c5-8a4f7a15ca08"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="53" splitType="Stretch">
+			<textField>
+				<reportElement x="380" y="15" width="100" height="30" uuid="9b32e820-136e-45a1-a3b3-4842f046f812"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{suma}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="260" y="15" width="120" height="20" uuid="13f9328a-9b5e-4430-b9ab-942f68d14ae8"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total recaudado:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="250" y="35" width="270" height="1" uuid="7a46328b-a738-4f44-b307-7689167615f5"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="450" y="10" width="100" height="10" uuid="22823b6f-c25c-49ef-8adc-5104c13a9036"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="3" width="417" height="45" uuid="2b759a00-ab29-4c43-bd55-061ee265346c"/>
+				<textElement>
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<text><![CDATA[Lcdo Enrique Reyes Montenegro
+Email: fismedica@hotmail.com
+Instagram:@fismedica]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

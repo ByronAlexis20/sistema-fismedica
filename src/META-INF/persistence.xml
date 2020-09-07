@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="sistema-fismedica" transaction-type="RESOURCE_LOCAL">
+		<class>com.fismedica.modelo.Categoria</class>
+		<class>com.fismedica.modelo.CitaCabecera</class>
+		<class>com.fismedica.modelo.CitaDetalle</class>
+		<class>com.fismedica.modelo.Cliente</class>
+		<class>com.fismedica.modelo.Empresa</class>
+		<class>com.fismedica.modelo.FacturaCabecera</class>
+		<class>com.fismedica.modelo.FacturaDetalle</class>
+		<class>com.fismedica.modelo.Medico</class>
+		<class>com.fismedica.modelo.Menu</class>
+		<class>com.fismedica.modelo.Perfil</class>
+		<class>com.fismedica.modelo.Permiso</class>
+		<class>com.fismedica.modelo.Precio</class>
+		<class>com.fismedica.modelo.Servicio</class>
+		<class>com.fismedica.modelo.Usuario</class>
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/FISMEDICA"/>
+			<property name="javax.persistence.jdbc.user" value="postgres"/>
+			<property name="javax.persistence.jdbc.password" value="tricampeon2015"/>
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+		</properties>
+	</persistence-unit>
+</persistence>

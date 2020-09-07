@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptServicioCategoria" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dc5cfbfd-8cdc-4e66-ae6d-870469510d10">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="conexion fismedica"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="EMPRESA" class="java.lang.String"/>
+	<parameter name="DIRECCION" class="java.lang.String"/>
+	<parameter name="TELEFONO" class="java.lang.String"/>
+	<parameter name="FECHA_INICIO" class="java.util.Date"/>
+	<parameter name="FECHA_FIN" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[select s.id_servicio,s.servicio,c.id_categoria,c.categoria,
+cast((select (case when sum(d.total) is null then 0 else sum(d.total) end) 
+from factura_cabecera f, factura_detalle d
+where f.id_factura = d.id_factura and f.estado = 'A' 
+and d.estado = 'A'  and d.id_servicio = s.id_servicio
+and f.fecha_emision between  $P{FECHA_INICIO} and  $P{FECHA_FIN}
+and d.id_categoria = c.id_categoria) as numeric(8,2)) as totalServicio
+
+from servicio s,precio p, categoria c
+where s.id_servicio = p.id_servicio and c.id_categoria = p.id_categoria
+group by  s.id_servicio,c.id_categoria]]>
+	</queryString>
+	<field name="id_servicio" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_servicio"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="servicio"/>
+	</field>
+	<field name="servicio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="servicio"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="servicio"/>
+	</field>
+	<field name="id_categoria" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_categoria"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="categoria"/>
+	</field>
+	<field name="categoria" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="categoria"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="categoria"/>
+	</field>
+	<field name="totalservicio" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.label" value="totalservicio"/>
+	</field>
+	<variable name="sumaServicios" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalservicio}]]></variableExpression>
+	</variable>
+	<variable name="sumaCadaServicios" class="java.lang.Float" resetType="Group" resetGroup="Servicio" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalservicio}]]></variableExpression>
+	</variable>
+	<group name="Servicio">
+		<groupExpression><![CDATA[$F{id_servicio}]]></groupExpression>
+		<groupHeader>
+			<band height="46">
+				<textField>
+					<reportElement x="64" y="4" width="360" height="20" uuid="9ae2e49f-a764-4ea2-80bd-9beda994ee1b"/>
+					<textElement verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{servicio}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="1" y="5" width="69" height="19" uuid="914f95e0-02db-488b-92da-ad9dc3992387"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Servicio:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="340" y="20" width="110" height="23" uuid="0ce188cc-9493-4925-9642-539678be53ef">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7e94bf7a-c61f-45b8-80a4-28f23375c5cb"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total recudado]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="70" y="21" width="250" height="23" uuid="82c86699-89dc-4bd6-aef8-062cdd3dd7e1">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7e94bf7a-c61f-45b8-80a4-28f23375c5cb"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Categoría]]></text>
+				</staticText>
+				<line>
+					<reportElement x="60" y="21" width="370" height="1" uuid="06a0e04f-5339-4d67-80e5-7643b9ee9a49"/>
+					<graphicElement>
+						<pen lineWidth="1.0"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="40" y="44" width="450" height="1" uuid="75b79e14-6b7a-4a49-b169-a7c0a1e14bab"/>
+					<graphicElement>
+						<pen lineWidth="1.0"/>
+					</graphicElement>
+				</line>
+				<textField evaluationTime="Group" evaluationGroup="Servicio" isBlankWhenNull="true">
+					<reportElement x="460" y="5" width="70" height="20" uuid="2e8d5b2d-34da-41da-befc-ff4ae270ce9a"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumaCadaServicios}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="451" y="2" width="26" height="28" uuid="033fac2c-fb0a-438a-a457-0a8ef2d2727e"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+					<text><![CDATA[$]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="11">
+				<line>
+					<reportElement x="38" y="-3" width="450" height="1" uuid="0e2c4ff5-9711-48b3-9392-26066f1e7b30"/>
+					<graphicElement>
+						<pen lineWidth="1.0"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="108" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="1" y="19" width="79" height="70" uuid="94f4d821-846e-42a6-8dae-149b020823ab"/>
+				<imageExpression><![CDATA["logo.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="87" y="22" width="463" height="20" uuid="708af89c-f653-48c2-a2f6-36827db9bd0b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{EMPRESA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="87" y="42" width="463" height="20" uuid="04ae4509-cfcd-401b-8487-d2e9adecd588"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DIRECCION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="87" y="62" width="463" height="20" uuid="7bed8241-51f1-47fd-a075-c519f7b2c6ad"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TELEFONO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="88" y="82" width="463" height="18" uuid="3f6ea9a2-6ecb-4f14-ac8f-70b0ff9878a4"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[La Libertad - Ecuador]]></text>
+			</staticText>
+			<textField pattern="MMM d, yyyy h:mm:ss a">
+				<reportElement x="336" y="0" width="210" height="22" uuid="15004206-0f6f-44c2-9023-bec276c2805a"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="4" y="100" width="549" height="1" uuid="610f8d09-7329-4a75-9aed-007a0a05575e"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="80" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="50" width="69" height="30" uuid="f4050241-4e68-42b2-b9cb-e084ba2bba42"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESDE: ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="60" y="73" width="80" height="1" uuid="a4dbbbdd-24b1-4524-908b-5aebb2ef435e"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="155" y="50" width="69" height="30" uuid="3847b513-2365-479f-b46f-3cbf64a5a7a1"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HASTA :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="215" y="73" width="80" height="1" uuid="1ee14666-3b8a-4234-a5a6-8d022346332f"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="60" y="50" width="100" height="30" uuid="fddda6f6-9957-4bb6-8bd3-ab1b3a128438"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FECHA_FIN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="218" y="50" width="100" height="30" uuid="c7526c07-7c55-42ae-b814-38345d251d52"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FECHA_FIN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="47" y="12" width="463" height="28" uuid="a2a71983-fa3b-4947-b83a-3e1cf20d12f3"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECAUDACIONES DE SERVICIOS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<textField>
+				<reportElement x="70" y="1" width="250" height="17" uuid="42e1f577-5fec-47c7-9eab-a0832341dddc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0f6ae2df-79c3-4898-9813-c8c727ae879d"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{categoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="0" width="100" height="18" uuid="5f755bdb-eb89-46b2-aa17-4c02c320392f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7e94bf7a-c61f-45b8-80a4-28f23375c5cb"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalservicio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="345" y="12" width="111" height="30" uuid="498a6711-a698-42c2-b493-4f09b051afe6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sumaServicios}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="233" y="17" width="108" height="23" uuid="6e095af1-0049-445c-a4dd-1791f3969b1a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7e94bf7a-c61f-45b8-80a4-28f23375c5cb"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total recudado]]></text>
+			</staticText>
+			<line>
+				<reportElement x="233" y="40" width="260" height="1" uuid="eaf34254-c552-4a7c-adc5-39236741255a"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="13" y="3" width="417" height="45" uuid="2cca961f-9737-431e-9824-f989e0e00639"/>
+				<textElement>
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<text><![CDATA[Lcdo Enrique Reyes Montenegro
+Email: fismedica@hotmail.com
+Instagram:@fismedica]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="450" y="10" width="100" height="10" uuid="39a597c9-553e-4f70-a812-2b72346185d8"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

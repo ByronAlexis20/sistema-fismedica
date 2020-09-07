@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptComparativo" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a6c55d6c-28eb-42bc-b4ab-eb9e10ab40b4">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="conexion fismedica"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="F_INICIO_ANT" class="java.lang.String"/>
+	<parameter name="F_FIN_ANT" class="java.lang.String"/>
+	<parameter name="ANIO_ANT" class="java.lang.String"/>
+	<parameter name="F_INICIO_ACT" class="java.lang.String"/>
+	<parameter name="F_FIN_ACT" class="java.lang.String"/>
+	<parameter name="ANIO_ACT" class="java.lang.String"/>
+	<parameter name="EMPRESA" class="java.lang.String"/>
+	<parameter name="DIRECCION" class="java.lang.String"/>
+	<parameter name="TELEFONO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from empresa]]>
+	</queryString>
+	<field name="id_empresa" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_empresa"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresa"/>
+	</field>
+	<field name="ruc" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ruc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresa"/>
+	</field>
+	<field name="logo" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="logo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresa"/>
+	</field>
+	<field name="razon_social" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="razon_social"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresa"/>
+	</field>
+	<field name="representante" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="representante"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresa"/>
+	</field>
+	<field name="direccion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="direccion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresa"/>
+	</field>
+	<field name="telefono" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="telefono"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresa"/>
+	</field>
+	<field name="email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresa"/>
+	</field>
+	<field name="estado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="estado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empresa"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="117" splitType="Stretch">
+			<textField>
+				<reportElement x="140" y="10" width="295" height="16" uuid="55ac5a5a-1a05-4e51-ab76-e8c853dc82ed"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{EMPRESA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="26" width="294" height="16" uuid="43f13699-fc43-4fbf-be64-5aa2a2111636"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DIRECCION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="42" width="294" height="14" uuid="1fcc3c71-2f56-4364-b9d7-263f7135403f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TELEFONO}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame">
+				<reportElement x="1" y="3" width="99" height="70" uuid="95b5cb40-7510-423e-9e2d-4667f704c106"/>
+				<imageExpression><![CDATA["logo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="140" y="57" width="296" height="14" uuid="52a95cc8-0d66-4fb7-9278-13b35569c4a1"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[La Libertad - Ecuador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-11" y="80" width="553" height="27" uuid="8fe847a2-e719-4b31-97cf-1755da8247f2"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recaudaciones comparativo Año actual y Anterior]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="73" width="552" height="1" uuid="32625cd1-5b3e-4e4d-a69e-bc508a01aa3b"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#FF082D"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="59" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<subreport>
+				<reportElement x="0" y="13" width="553" height="37" uuid="ffe06885-88f3-4619-9b5f-ac32374f8289"/>
+				<subreportParameter name="ANIO">
+					<subreportParameterExpression><![CDATA[$P{ANIO_ACT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FECHA_INICIO">
+					<subreportParameterExpression><![CDATA[$P{F_INICIO_ACT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FECHA_FIN">
+					<subreportParameterExpression><![CDATA[$P{F_FIN_ACT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["rptComparativoAnioActual.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="48" splitType="Stretch">
+			<textField>
+				<reportElement x="450" y="10" width="100" height="10" uuid="73324723-04ba-4418-ba29-f8daa720da6f"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="3" width="417" height="45" uuid="9ceb37e2-207c-4563-8730-8c3ca2503117"/>
+				<textElement>
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<text><![CDATA[Lcdo Enrique Reyes Montenegro
+Email: fismedica@hotmail.com
+Instagram:@fismedica]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="54" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="553" height="40" uuid="ec04cff9-42e2-428f-8fa0-a5070ecc5326"/>
+				<subreportParameter name="ANIO">
+					<subreportParameterExpression><![CDATA[$P{ANIO_ANT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FECHA_INICIO">
+					<subreportParameterExpression><![CDATA[$P{F_INICIO_ANT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FECHA_FIN">
+					<subreportParameterExpression><![CDATA[$P{F_FIN_ANT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["rptComparativoAnioAnterior.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

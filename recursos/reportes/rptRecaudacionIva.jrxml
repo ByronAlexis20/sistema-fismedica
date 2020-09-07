@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptRecaudacionIva" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="60eddae4-cd63-447b-9bfa-85e56972f5ab">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="conexion fismedica"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="177"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="812"/>
+	<parameter name="FECHA_INICIO" class="java.util.Date"/>
+	<parameter name="FECHA_FIN" class="java.util.Date"/>
+	<parameter name="EMPRESA" class="java.lang.String"/>
+	<parameter name="DIRECCION" class="java.lang.String"/>
+	<parameter name="TELEFONO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select 'IMPUESTO RECAUDADO'as descripcion, 
+(cast(case when (sum(iva) is null) then 0 else sum(iva) end as numeric(8,2))) as impuesto
+from factura_cabecera
+where estado = 'A' and fecha_emision between  $P{FECHA_INICIO} and  $P{FECHA_FIN}]]>
+	</queryString>
+	<field name="descripcion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+	</field>
+	<field name="impuesto" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.label" value="impuesto"/>
+	</field>
+	<variable name="suma" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{impuesto}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="106" splitType="Stretch">
+			<textField>
+				<reportElement x="87" y="22" width="463" height="20" uuid="052f3f8f-4edc-4731-837a-0dfff4768bac"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{EMPRESA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="87" y="42" width="463" height="20" uuid="29e6ea59-1195-4c8b-9f67-82a7d25110d9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DIRECCION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="87" y="62" width="463" height="20" uuid="94169a7b-317f-49db-888c-af3b36dfd3bf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TELEFONO}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame">
+				<reportElement x="1" y="19" width="79" height="70" uuid="e056b6a5-bd5b-440a-b1a3-aa167ac5e215"/>
+				<imageExpression><![CDATA["logo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="87" y="82" width="463" height="18" uuid="02731423-c589-42a0-9e79-e42ada12a6f0"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[La Libertad - Ecuador]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-4" y="100" width="549" height="1" uuid="e3679a9a-2f37-4605-8a30-dfbba23c5ee8"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<textField pattern="MMM d, yyyy h:mm:ss a">
+				<reportElement x="340" y="0" width="210" height="22" uuid="558b75d2-3618-489d-90dd-0b8ab361da63"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="96" splitType="Stretch">
+			<staticText>
+				<reportElement x="60" y="74" width="272" height="20" uuid="4c86e5c0-47e6-437d-8239-361fef4e1ce3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2438753c-93d0-4d16-bfe2-34c443783409"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="74" width="100" height="20" uuid="9523e321-c876-479b-b844-8277a6c9b0ee">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f86d22f4-3e5e-4502-bdd0-4850ec18d29a"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Impuesto]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="50" y="34" width="100" height="30" uuid="1ff1571d-8722-48de-befa-b8459b95d697"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{FECHA_INICIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="34" width="100" height="30" uuid="9b189879-f5ad-40d9-a0a0-6b13f98ab8b5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{FECHA_FIN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="33" width="49" height="30" uuid="8c59ecc3-67c1-4827-8e1a-c03b7e87a587"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Desde:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="34" width="50" height="30" uuid="da8878ed-0704-4d61-ae92-51e745df2be2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hasta:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="0" width="400" height="30" uuid="6fa80bd1-f574-4ebd-9b09-9f40d6ea9ca2"/>
+				<textElement textAlignment="Center">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECAUDACIONES POR IVA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="60" y="2" width="272" height="20" uuid="b8167417-7dcc-41c9-821a-22f8df0f36cd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2438753c-93d0-4d16-bfe2-34c443783409"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="2" width="100" height="20" uuid="f46ac690-749b-415b-b02f-2fee2dd4fb5e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f86d22f4-3e5e-4502-bdd0-4850ec18d29a"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{impuesto}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-5" y="2" width="549" height="1" uuid="3f11fb2d-51a0-40f0-be44-d5f7b9a1f61a"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement x="240" y="18" width="113" height="30" uuid="e928c40a-09c2-4429-877d-5594b038e68f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Impuestos:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="360" y="16" width="100" height="30" uuid="d28302e9-7ae4-45e0-995d-be2f4d75d779"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{suma}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="450" y="10" width="100" height="10" uuid="54471e48-6ddd-4a25-993d-7ea626861bbd"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="3" width="417" height="45" uuid="cf6ea75e-e577-49a7-839c-fb9453206d31"/>
+				<textElement>
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<text><![CDATA[Lcdo Enrique Reyes Montenegro
+Email: fismedica@hotmail.com
+Instagram:@fismedica]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="48" splitType="Stretch"/>
+	</summary>
+</jasperReport>

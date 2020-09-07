@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptTicketCita" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="490ccf20-e8a1-43f1-a789-49116431ca04">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="conexion fismedica"/>
+	<property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="TURNO" class="java.lang.String"/>
+	<parameter name="HORARIO" class="java.lang.String"/>
+	<parameter name="FECHA" class="java.lang.String"/>
+	<parameter name="PACIENTE" class="java.lang.String"/>
+	<parameter name="ID_MEDICO" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select *
+from medico where id_medico =  $P{ID_MEDICO}]]>
+	</queryString>
+	<field name="id_medico" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_medico"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="medico"/>
+	</field>
+	<field name="cedula" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cedula"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="medico"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="medico"/>
+	</field>
+	<field name="apellido" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="apellido"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="medico"/>
+	</field>
+	<field name="titulo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="titulo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="medico"/>
+	</field>
+	<field name="especialidad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="especialidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="medico"/>
+	</field>
+	<field name="fecha_nacimiento" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="fecha_nacimiento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="medico"/>
+	</field>
+	<field name="estado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="estado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="medico"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="191" splitType="Stretch">
+			<staticText>
+				<reportElement x="138" y="1" width="68" height="20" uuid="e2dc59b3-f6b7-4024-acd9-80e91c9ff338"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TICKET]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="43" width="68" height="49" uuid="254472e8-ea8e-4c44-b3cd-7821da2ff584"/>
+				<box>
+					<pen lineWidth="2.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Bodoni MT Black" size="41" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TURNO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7" y="52" width="130" height="20" uuid="11403d3d-53fc-4906-9e61-05412c14263f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{HORARIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="6" y="72" width="132" height="20" uuid="26dd7a09-d10d-4b57-bb66-f686af4cf931"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FECHA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="106" y="150" width="50" height="12" uuid="15fdc9a8-0110-4b73-97b6-a4c07e0610a4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="acffabe3-4b59-42ac-9eb3-c4cfb4ccdc67"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Especialidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="67" y="110" width="80" height="12" uuid="d77757b3-a331-4dbb-9923-af533915ef0b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7b8824b7-2bcc-424e-bb31-c32e3880d374"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="110" width="68" height="12" uuid="efbcd925-b80e-4555-b01c-70b446d22eee">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f733981d-0e35-47be-ad5b-d5b8e083545a"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="94" width="101" height="20" uuid="62e74303-791a-4c62-bfae-9770cdf7cd95"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Datos del médico]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="7" y="1" width="120" height="44" uuid="864e5c25-2d13-403e-95ea-f02103539b54"/>
+				<imageExpression><![CDATA["logo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="50" y="162" width="120" height="20" uuid="0f04c9e9-d9a6-42ab-b52b-e831de9ad774"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESPETE SU TURNO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="122" width="63" height="18" uuid="4d35c04e-22ff-4b81-a924-ceb314ec6ffb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f733981d-0e35-47be-ad5b-d5b8e083545a"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="122" width="74" height="18" uuid="9a76a3ef-f111-4ab9-82e7-e59b58b68757">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7b8824b7-2bcc-424e-bb31-c32e3880d374"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="138" y="21" width="68" height="27" uuid="c1cacf3f-347a-4d34-a2ba-9236bf0c4e2c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Turno N°]]></text>
+			</staticText>
+			<line>
+				<reportElement x="7" y="93" width="200" height="1" uuid="65ce8c33-5bbf-48be-b262-c6bb0d6834bd"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="7" y="72" width="130" height="1" uuid="9381f4a4-4065-4701-baa5-768a117d11e0"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="6" y="176" width="200" height="15" uuid="28365f81-daf6-4ce4-a4c6-1d60fbb646c2"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Se lo agradece el Lcdo. Enrique Reyes]]></text>
+			</staticText>
+			<line>
+				<reportElement x="7" y="48" width="130" height="1" uuid="33aa2362-488e-4e10-a8e0-ad861c0c2d4a"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="137" y="1" width="1" height="92" uuid="3eb2971e-cfce-4404-9b24-113baa83e22e"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="7" y="110" width="199" height="1" uuid="3197905b-1797-4b99-8e29-20db4a4f3325"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="7" y="160" width="200" height="1" uuid="9782385e-dfc3-425a-bb8b-c5842fe6b7af"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<rectangle>
+				<reportElement stretchType="ContainerHeight" x="7" y="-2" width="199" height="191" backcolor="rgba(255, 255, 255, 0.019607844)" uuid="2152c082-26ea-48c7-87a5-2ac315ce4d4e"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="70" y="140" width="136" height="10" uuid="d0cb8d9f-c4f0-4b53-ad89-79d308cf746b"/>
+				<textElement textAlignment="Center">
+					<font fontName="calibri&#xD;&#xA;" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{especialidad}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement stretchType="ContainerHeight" x="7" y="111" width="63" height="49" uuid="0b92da76-eb8c-4581-bed3-4db89e582f86"/>
+				<box>
+					<pen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PACIENTE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="92" width="61" height="20" uuid="fd74f671-f856-4c35-9f81-a6f181de689d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Paciente]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<columnFooter>
+		<band height="50"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="50"/>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

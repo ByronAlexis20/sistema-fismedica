@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptComparativo" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" uuid="e9701cb6-ad2c-438e-8752-9e89070f90e0">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="conexion fismedica"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="FECHA_INICIO" class="java.lang.String"/>
+	<parameter name="FECHA_FIN" class="java.lang.String"/>
+	<parameter name="ANIO" class="java.lang.String"/>
+	<parameter name="FECHA_INICIO_ANT" class="java.lang.String"/>
+	<parameter name="FECHA_FIN_ANT" class="java.lang.String"/>
+	<parameter name="ANIO_ANT" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select m.numero, ($P{FECHA_INICIO}::date + m.meses::interval) as fechaActual,
+
+(select me.nombre_mes 
+ from numero_mes me
+ where me.id_numero = (select extract (month from($P{FECHA_INICIO}::date + m.meses::interval)))) as mes,
+
+date_trunc('month',($P{FECHA_INICIO}::date + m.meses::interval)) as primerDia,
+date_trunc('month',($P{FECHA_INICIO}::date + m.meses::interval)) +'1month' ::interval -'1sec' ::interval as ultimoDia,
+(select case when sum(f.total) is null then 0 else sum(f.total) end
+from factura_cabecera f where f.estado = 'A' and f.fecha_emision between (date_trunc('month',($P{FECHA_INICIO}::date + m.meses::interval))) 
+and (date_trunc('month',($P{FECHA_INICIO}::date + m.meses::interval)) +'1month' ::interval -'1sec' ::interval))
+from numero_mes m
+where m.numero <= (select extract(year from age($P{FECHA_FIN}::date , $P{FECHA_INICIO} ::date))*12 +
+extract(month from age($P{FECHA_FIN}::date ,$P{FECHA_INICIO}::date)))]]>
+	</queryString>
+	<field name="numero" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="numero"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="numero_mes"/>
+	</field>
+	<field name="fechaactual" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="fechaactual"/>
+	</field>
+	<field name="mes" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mes"/>
+	</field>
+	<field name="primerdia" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="primerdia"/>
+	</field>
+	<field name="ultimodia" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="ultimodia"/>
+	</field>
+	<field name="sum" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="sum"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="44" splitType="Stretch">
+			<textField>
+				<reportElement x="20" y="10" width="525" height="30" uuid="8ed713c5-6e67-4154-98ed-b9c9ef7e2d84"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ANIO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="173" splitType="Stretch">
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement x="0" y="0" width="520" height="170" uuid="d3afb713-7624-4f08-9825-c99e63db76ed"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{mes}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{mes}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{sum}]]></valueExpression>
+						<labelExpression><![CDATA[$F{mes}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

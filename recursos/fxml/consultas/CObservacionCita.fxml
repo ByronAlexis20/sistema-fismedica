@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="316.0" prefWidth="496.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fismedica.controlador.CCitasObservacionC">
+   <children>
+      <Label layoutX="129.0" layoutY="30.0" text="Observacion de la Cita">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="txtAObservacion" layoutX="48.0" layoutY="72.0" prefHeight="168.0" prefWidth="426.0" wrapText="true" />
+      <Button fx:id="btnObservacion" layoutX="149.0" layoutY="251.0" mnemonicParsing="false" onAction="#guardarObservacion" text="GUARDAR CITA ATENDIDA" />
+   </children>
+</AnchorPane>

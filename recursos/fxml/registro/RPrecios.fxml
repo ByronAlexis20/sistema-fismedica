@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="536.0" prefWidth="741.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fismedica.controlador.RPreciosC">
+  <!-- TODO Add Nodes -->
+  <children>
+    <GridPane hgap="1.0" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="699.0" vgap="1.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="20.0">
+      <children>
+        <Label alignment="CENTER" prefHeight="42.0" prefWidth="262.0" text="PRECIOS" GridPane.columnSpan="7" GridPane.halignment="CENTER">
+          <font><Font name="Arial Bold" size="30.0" /></font>
+        </Label>
+        <TableView fx:id="tvDatos" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="8" />
+        <Label alignment="CENTER" prefHeight="17.0" prefWidth="144.0" text="LISTADO" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+               <font><Font name="Arial Bold" size="12.0" /></font>
+        </Label>
+        
+        <HBox alignment="CENTER" prefHeight="100.0" style="-fx-border-color: #bbc8d0; -fx-border-width: 1px; -fx-spacing: 8; -fx-background-radius: 6.0; -fx-max-height: 300" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6">
+          <children>
+            <Button fx:id="btnAceptar" alignment="BOTTOM_CENTER" contentDisplay="TOP" graphicTextGap="0.0" mnemonicParsing="false" onAction="#grabar" prefHeight="55.0" prefWidth="75.0" styleClass="botonGrabar" text="Grabar">
+            <font><Font name="System Bold" size="12.0" /></font>
+            </Button>
+          </children>
+        </HBox>
+            <ComboBox fx:id="cboServicio" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <ComboBox fx:id="cboCategoria" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Label text="Servicio:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Label text="Categoría:" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <GridPane GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TextField fx:id="txtPrecio" maxWidth="-Infinity" prefHeight="25.0" prefWidth="158.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Label text="Precio:" GridPane.halignment="CENTER" />
+                  <TextField fx:id="txtMinutos" maxWidth="-Infinity" prefHeight="25.0" prefWidth="158.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Label text="Minutos:" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+               </children>
+            </GridPane>
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" prefWidth="50.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" prefWidth="241.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" prefWidth="289.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" prefWidth="50.0" />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="35.0" minHeight="0.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="35.0" minHeight="0.0" prefHeight="12.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="30.0" minHeight="7.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="300.0" minHeight="10.0" prefHeight="179.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="30.0" minHeight="4.0" prefHeight="15.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+  </children>
+</AnchorPane>
