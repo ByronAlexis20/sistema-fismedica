@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="recursos/reportes"/>
+	<classpathentry kind="src" path="recursos/css"/>
+	<classpathentry kind="src" path="recursos/imagen"/>
+	<classpathentry kind="src" path="recursos/fxml"/>
+	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="lib/commons-collections-3.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/commons-digester-2.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-fileupload.jar"/>
+	<classpathentry kind="lib" path="lib/commons-io.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/controlsfx-8.40.14.jar"/>
+	<classpathentry kind="lib" path="lib/flashchart.jar"/>
+	<classpathentry kind="lib" path="lib/groovy-all-1.7.5.jar"/>
+	<classpathentry kind="lib" path="lib/iText-5.0.5.jar"/>
+	<classpathentry kind="lib" path="lib/jasperreports-6.3.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasperreports-6.5.1.jar"/>
+	<classpathentry kind="lib" path="lib/jasperreports-chart-customizers-6.5.1.jar"/>
+	<classpathentry kind="lib" path="lib/jasperreports-chart-themes-6.5.1.jar"/>
+	<classpathentry kind="lib" path="lib/jasperreports-fonts-6.5.1.jar"/>
+	<classpathentry kind="lib" path="lib/jasperreports-functions-6.5.1.jar"/>
+	<classpathentry kind="lib" path="lib/jasperreports-javaflow-6.5.1.jar"/>
+	<classpathentry kind="lib" path="lib/javax.mail.jar"/>
+	<classpathentry kind="lib" path="lib/javax.persistence-2.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/jcommon-1.0.8.jar"/>
+	<classpathentry kind="lib" path="lib/jdom-1.1.2.jar"/>
+	<classpathentry kind="lib" path="lib/jfoenix-8.0.7.jar"/>
+	<classpathentry kind="lib" path="lib/jfreechart-1.0.12.jar"/>
+	<classpathentry kind="lib" path="lib/joda-time-2.9.1.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.persistence.antlr-2.5.2.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.persistence.asm-2.5.2.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.persistence.core-2.5.2.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.persistence.jpa.jpql-2.5.2.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.persistence.jpa-2.5.2.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.persistence.jpa-2.6.4.jar"/>
+	<classpathentry kind="lib" path="lib/org.springframework.beans-3.1.2.release.jar"/>
+	<classpathentry kind="lib" path="lib/postgresql-42.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/sapphire.jar"/>
+	<classpathentry kind="lib" path="lib/silvertail.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-jdk14.jar"/>
+	<classpathentry kind="lib" path="lib/spring-asm-3.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-core-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-core-5.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-jcl-5.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/SupremeMdiWindow-1.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/timetree-3.5.14.55.29.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
